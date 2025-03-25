@@ -66,11 +66,10 @@ function getRandomImageUrl() {
     return imageUrls[randomIndex];
 }
 
-// Create a server that outputs a random image URL
 const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
     const randomImage = getRandomImageUrl();
-    res.end(randomImage);
+    res.writeHead(302, { 'Location': randomImage }); // Redirect to the image
+    res.end();
 });
 
 // Listen on a port (default 3000 for local testing)
